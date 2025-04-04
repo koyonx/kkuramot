@@ -1,0 +1,13 @@
+Home/.config/Code/User/setting.json
+
+
+{
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "42header.username": "kkuramot",
+    "42header.email": "kkuramot@student.42tokyo.jp",
+    "editor.formatOnSave": true,
+    "[c]": {
+        "editor.defaultFormatter": "keyhr.42-c-format"
+    }
+}qq

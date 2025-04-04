@@ -1,0 +1,53 @@
+main.c
+│
+├── dict_loader.c → dict_parser.c → base_dict.c（辞書を読み込んで構造体に）
+│
+└── num_to_words.c → change_word.c → base_num.c（数字を単語に変換）
+
+
+✅ main.c（エントリーポイント）
+int main(int argc, char **argv)
+	引数チェック：argc == 2 または argc == 3 のときのみ有効（2つ目の引数が数値、3つ目が辞書ファイルパス）
+	辞書の読み込み：load_dict() を呼び出して辞書を読み込む（dict_loader.c）
+	数字の変換処理：num_to_words() を呼んで変換結果を出力（num_to_words.c）
+
+📘 dict_loader.c（辞書の読み込み）
+主な関数
+t_dict *load_dict(char *path)
+	ファイルを開いて parse_line() を呼び出す
+	全ての行を読み込んで t_dict 配列を返す
+
+📘 dict_parser.c（1行ずつ辞書を解析）
+主な関数
+t_dict parse_line(char *line)
+	1行を数字部分と単語部分に分解（例："100: one hundred"）
+	t_dict 構造体に格納
+
+📘 base_dict.c（辞書管理）
+主な関数
+	char *search_dict(t_dict *dicts, char *num)
+	数字（例："100", "20"）を検索し、該当する単語を返す
+
+🧮 base_num.c（数値操作ユーティリティ）
+主な関数
+int is_valid_number(char *str)
+	入力が全て数字かチェック
+
+int num_length(char *str)
+	桁数を取得
+
+char *cut_num(char *str, int start, int len)
+	任意の部分を抽出（例：千の位、百の位など）
+
+🔤 change_word.c（数字→単語の構築）
+主な関数
+void change_word(t_dict *dicts, char *number)
+	数字の各桁を処理して、辞書を参照しながら単語を出力
+	例：123 → "one hundred twenty-three"
+
+🗣 num_to_words.c（全体の変換コントロール）
+主な関数
+void num_to_words(char *number, t_dict *dicts)
+	change_word() を呼び出し、標準出力に単語で出力
+
+

@@ -1,0 +1,9 @@
+final
+	標準入力 x
+	
+norm_error
+	norm x
+	
+	
+cheat  lseek
+
